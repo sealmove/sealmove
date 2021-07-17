@@ -7,9 +7,9 @@ Having a strong JVM ecosystem background thanks to my contribution to Kaitai Str
 
 ### Academic Projects:
 :green_circle: [minic2c](https://github.com/sealmove/minic2c) &nbsp;
-:red_circle: [hadoop-olympics](https://github.com/sealmove/hadoop-olympics) &nbsp;
-:red_circle: [storm-project](https://github.com/Circe-s-House/storm-project) &nbsp;
-:red_circle: car-wash-app &nbsp;
+:orange_circle: [hadoop-olympics](https://github.com/sealmove/hadoop-olympics) &nbsp;
+:orange_circle: [storm-project](https://github.com/Circe-s-House/storm-project) &nbsp;
+:orange_circle: car-wash-app &nbsp;
 :black_circle: [sip-model-checking](https://github.com/sealmove/sip-model-checking) &nbsp;
 :purple_circle: [fox-geese-corn](https://github.com/sealmove/fox-geese-corn) &nbsp;
 :purple_circle: [production-planning](https://github.com/sealmove/production-planning) &nbsp;
