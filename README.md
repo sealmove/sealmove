@@ -1,5 +1,7 @@
 ## Hi there 👋
-I am a software engineer who studied in University of Peloponnese (Tripoli, Greece) and AGH University of Science and Technology (Warsaw, Poland). My research field is **Compilers**. I am a member of the [Kaitai Struct](https://kaitai.io/) project since 2019 where I implemented a new compiler backend (code generation) to support the [Nim](https://nim-lang.org/) programming language as a target. I also developed a native solution as a Nim DSL, [binarylang](https://github.com/sealmove/binarylang). Having a strong JVM ecosystem background thanks to my contribution to Kaitai Struct, which is written in Scala, and the heavily Java-focused university curriculum, I recently started experimenting with **Android app development with Kotlin**. Appsec is yet another topic I find intriguing and I occasionally take part in CTF competitions.
+I am a software engineer from Greece.
+Recently I started experimenting with **Android app development with Kotlin** after establishing a strong background around JVM ecosystem thanks to my contribution to [Kaitai Struct](https://kaitai.io/) (Scala) and the heavily Java-focused curriculum of the university from which I graduated.
+Favorite topics include **Compilers** and **Appsec**. My involvement in those include pioneering in the field of binary parser generators and occasionally competing in CTFs.
 
 ### Academic Projects:
 :green_circle: [minic2c](https://github.com/sealmove/minic2c) &nbsp;
