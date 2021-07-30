@@ -1,7 +1,7 @@
-## Hi there 👋
-I am a software engineer from Greece.
-Recently I started experimenting with **Android app development with Kotlin** after establishing a strong background around JVM ecosystem thanks to my contribution to [Kaitai Struct](https://kaitai.io/) (Scala) and the heavily Java-focused curriculum of the university from which I graduated.
-Favorite topics include **Compilers** and **Appsec**. My involvement in those include pioneering in the field of binary parser generators and occasionally competing in CTFs.
+## Software Engineer, Greece
+- **Data Engineering:** Main area of interest and professional orientation. I have a strong background in Scala and the JVM ecosystem thanks to my contribution to [Kaitai Struct](https://kaitai.io/) (Scala) and the heavily Java-focused curriculum of the university from which I graduated.
+- **Compiler Engineering:** Academic specialization. Pioneer in the field of _binary parser generators_.
+- **Appsec:** Security awareness and frequent technical practice by partitipation in CTF competitions with buddies.
 
 ### Academic Projects:
 :green_circle: [minic2c](https://github.com/sealmove/minic2c) &nbsp;
