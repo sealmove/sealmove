@@ -9,6 +9,3 @@ Hi there. I am a Software Developer from Greece. My main area of interest and pr
 :black_circle: [sip-model-checking](https://github.com/sealmove/sip-model-checking) &nbsp;
 :purple_circle: [fox-geese-corn](https://github.com/sealmove/fox-geese-corn) &nbsp;
 :purple_circle: [production-planning](https://github.com/sealmove/production-planning) &nbsp;
-
-### Certificates:
-:black_flag: ![Cyber Apocalypse CTF](CTF-Cyber-Apocalypse-sealmove.pdf?raw=true "Cyber Apocalypse CTF")
