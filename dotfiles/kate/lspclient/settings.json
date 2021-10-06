@@ -1,0 +1,9 @@
+{
+    "servers": {
+        "nim": {
+            "command": [".nimble/bin/nimlsp"],
+            "url": "https://github.com/PMunch/nimlsp",
+            "highlightingModeRegex": "^Nim$"
+        }
+    }
+}
