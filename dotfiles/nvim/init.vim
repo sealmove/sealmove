@@ -63,7 +63,7 @@ function! OpenTerminal()
   split term://zsh
   resize 10
 endfunction
-nnoremap <Bslash> :call OpenTerminal()<CR>
+nnoremap <C-N> :call OpenTerminal()<CR>
 
 let g:terminal_color_foreground = "#ecf0c1"
 let g:terminal_color_background = "#0f111b"
