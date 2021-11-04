@@ -47,8 +47,8 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Make classic paste work in insert and command mode
-inoremap <C-V> <ESC>"*gPa
-cnoremap <C-V> <C-R>*
+inoremap <C-V> <ESC>"+gPa
+cnoremap <C-V> <C-R>+
 
 " Make Enter work ffs
 nnoremap <CR> :normal o<CR>
