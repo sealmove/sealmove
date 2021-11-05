@@ -7,7 +7,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'prabirshrestha/async.vim'
   Plug 'prabirshrestha/vim-lsp'
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
-  Plug 'scrooloose/nerdtree'
   Plug 'flazz/vim-colorschemes'
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -112,13 +111,6 @@ let g:terminal_color_13 = "#ce6f8f"
 let g:terminal_color_14 = "#7a5ccc"
 let g:terminal_color_15 = "#ecf0c1"
 
-" === NERDTree ===
-let g:NERDTreeMinimalUI = 1
-let g:NERDTreeIgnore = []
-let g:NERDTreeStatusline = ''
-highlight VertSplit guifg=gray
-nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-
 " === Nim LSP ===
 let s:nimlspexecutable = "nimlsp"
 let g:lsp_log_verbose = 1
@@ -150,19 +142,5 @@ autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal nonumber norelativenumber
-
-" Start NERDTree and put the cursor back in the other window.
-autocmd VimEnter * NERDTree | wincmd p
-
-function! OnBufWinEnter()
-  if &buftype == 'terminal'
-    silent! normal i
-  endif
-  if getcmdwintype() == ''
-    silent NERDTreeMirror
-  endif
-endfunction
-
-autocmd BufWinEnter * call OnBufWinEnter()
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd BufWinEnter * if &buftype == 'terminal' | silent! normal i | endif
 autocmd WinEnter * if &buftype == 'terminal' | silent! normal i | endif
