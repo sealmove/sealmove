@@ -61,16 +61,10 @@ nnoremap <Esc> :noh<CR>
 
 " === Fuzzy Finder ===
 nnoremap <C-p> :FZF<CR>
-autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 
 " === Integrated terminal ===
 set splitright
 set splitbelow
-autocmd TermOpen * startinsert
-autocmd TermOpen * setlocal nonumber norelativenumber
-
-" Force insert mode when switching to terminal
-autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
 
 function! OpenTerminal()
   let size = &lines / 4
@@ -118,15 +112,12 @@ let g:terminal_color_13 = "#ce6f8f"
 let g:terminal_color_14 = "#7a5ccc"
 let g:terminal_color_15 = "#ecf0c1"
 
-" === File explorer ===
+" === NERDTree ===
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
 highlight VertSplit guifg=gray
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
-autocmd VimEnter * NERDTree | wincmd p
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
 " === Nim LSP ===
 let s:nimlspexecutable = "nimlsp"
@@ -154,5 +145,24 @@ inoremap <silent><expr> <TAB>
   \ asyncomplete#force_refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" === Filetype tweaks ===
+" === Auto commands ===
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+autocmd TermOpen * startinsert
+autocmd TermOpen * setlocal nonumber norelativenumber
+
+" Start NERDTree and put the cursor back in the other window.
+autocmd VimEnter * NERDTree | wincmd p
+
+function! OnBufWinEnter()
+  if &buftype == 'terminal'
+    silent! normal i
+  endif
+  if getcmdwintype() == ''
+    silent NERDTreeMirror
+  endif
+endfunction
+
+autocmd BufWinEnter * call OnBufWinEnter()
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+autocmd WinEnter * if &buftype == 'terminal' | silent! normal i | endif
