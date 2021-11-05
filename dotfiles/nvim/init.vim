@@ -1,8 +1,6 @@
 " This line makes pacman-installed global Arch Linux vim packages work.
 source /usr/share/nvim/archlinux.vim
 
-filetype plugin on
-
 call plug#begin('~/.config/nvim/plugged')
   Plug 'alaviss/nim.nvim'
   Plug 'prabirshrestha/asyncomplete.vim'
@@ -11,8 +9,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'scrooloose/nerdtree'
   Plug 'flazz/vim-colorschemes'
+  Plug 'Yggdroot/indentLine'
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'ryanoasis/vim-devicons'
 call plug#end()
+
+" === General ===
+filetype plugin on
 
 set keymap=greek_utf-8
 set iminsert=0 imsearch=-1
@@ -27,7 +30,7 @@ set guifont=*:h16
 
 colorscheme PerfectDark
 
-" integrate with global clipboard
+" === Integrate with global clipboard ===
 nnoremap d "_d
 vnoremap d "_d
 nnoremap D "_D
@@ -38,7 +41,7 @@ nnoremap C "_C
 vnoremap C "_C
 xnoremap p "_dP
 
-" Move lines up/down
+" === Move lines up/down ===
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
@@ -46,24 +49,55 @@ inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
-" Make classic paste work in insert and command mode
-inoremap <C-V> <ESC>"+gPa
-cnoremap <C-V> <C-R>+
+" === Make classic paste work in insert and command mode ===
+inoremap <C-v> <ESC>"+gPa
+cnoremap <C-v> <C-r>+
 
-" Make Enter work ffs
+" === Make Enter work ffs ===
 nnoremap <CR> :normal o<CR>
 
-" Integrated terminal
+" === Clear search ===
+nnoremap <Esc> :noh<CR>
+
+" === Fuzzy Finder ===
+nnoremap <C-p> :FZF<CR>
+autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
+
+" === Integrated terminal ===
 set splitright
 set splitbelow
-tnoremap <Esc> <C-\><C-n>
 autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal nonumber norelativenumber
+
+" Force insert mode when switching to terminal
+autocmd BufWinEnter,WinEnter * if &buftype == 'terminal' | silent! normal i | endif
+
 function! OpenTerminal()
+  let size = &lines / 4
   split term://zsh
-  resize 10
+  exec "resize " . size
 endfunction
-nnoremap <C-N> :call OpenTerminal()<CR>
+nnoremap <C-n> :call OpenTerminal()<CR>
+
+" Close terminal
+tnoremap <Esc> <C-\><C-n>:q<CR>
+
+function! ToggleFullscreen()
+  let size = &lines / 4
+  if winheight(0) == size
+    resize
+  else
+    exec "resize " . size
+  endif
+endfunction
+tnoremap <C-n> <C-\><C-n>:call ToggleFullscreen()<CR>i
+
+" Jump to and from terminal
+nnoremap <C-CR> <C-w><C-p>
+vnoremap <C-CR> <C-w><C-p>
+inoremap <C-CR> <Esc><C-w><C-p>
+tnoremap <C-CR> <C-\><C-n><C-w><C-p>
+tnoremap <C-p> <C-\><C-n>:FZF<CR>
 
 let g:terminal_color_foreground = "#ecf0c1"
 let g:terminal_color_background = "#0f111b"
@@ -84,15 +118,17 @@ let g:terminal_color_13 = "#ce6f8f"
 let g:terminal_color_14 = "#7a5ccc"
 let g:terminal_color_15 = "#ecf0c1"
 
-" File explorer
+" === File explorer ===
 let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = []
 let g:NERDTreeStatusline = ''
 highlight VertSplit guifg=gray
 nnoremap <silent> <C-b> :NERDTreeToggle<CR>
 autocmd VimEnter * NERDTree | wincmd p
+autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" Nim LSP
+" === Nim LSP ===
 let s:nimlspexecutable = "nimlsp"
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('/tmp/vim-lsp.log')
@@ -118,5 +154,5 @@ inoremap <silent><expr> <TAB>
   \ asyncomplete#force_refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-" Filetype tweaks
+" === Filetype tweaks ===
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
