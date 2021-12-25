@@ -2,15 +2,12 @@
 source /usr/share/nvim/archlinux.vim
 
 call plug#begin('~/.config/nvim/plugged')
+  Plug 'dense-analysis/ale'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'alaviss/nim.nvim'
-  Plug 'prabirshrestha/asyncomplete.vim'
-  Plug 'prabirshrestha/async.vim'
-  Plug 'prabirshrestha/vim-lsp'
-  Plug 'prabirshrestha/asyncomplete-lsp.vim'
   Plug 'flazz/vim-colorschemes'
   Plug 'Yggdroot/indentLine'
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " === General ===
@@ -27,6 +24,7 @@ set mouse=a
 set clipboard+=unnamedplus
 set guifont=*:h16
 
+highlight VertSplit guifg=gray
 colorscheme PerfectDark
 
 " === Integrate with global clipboard ===
@@ -41,16 +39,27 @@ vnoremap C "_C
 xnoremap p "_dP
 
 " === Move lines up/down ===
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+"nnoremap <A-j> :m .+1<CR>==
+"nnoremap <A-k> :m .-2<CR>==
+"inoremap <A-j> <Esc>:m .+1<CR>==gi
+"inoremap <A-k> <Esc>:m .-2<CR>==gi
+"vnoremap <A-j> :m '>+1<CR>gv=gv
+"vnoremap <A-k> :m '<-2<CR>gv=gv
+
+" === Change window focus ===
+nnoremap <silent> <A-h> :wincmd h<CR>
+nnoremap <silent> <A-j> :wincmd j<CR>
+nnoremap <silent> <A-k> :wincmd k<CR>
+nnoremap <silent> <A-l> :wincmd l<CR>
+tnoremap <silent> <A-h> <C-\><C-n>:wincmd h<CR>
+tnoremap <silent> <A-j> <C-\><C-n>:wincmd j<CR>
+tnoremap <silent> <A-k> <C-\><C-n>:wincmd k<CR>
+tnoremap <silent> <A-l> <C-\><C-n>:wincmd l<CR>
 
 " === Make classic paste work in insert and command mode ===
-inoremap <C-v> <ESC>"+gPa
-cnoremap <C-v> <C-r>+
+inoremap <A-v> <ESC>"+gpi
+tnoremap <A-v> <C-\><C-n>pi
+cnoremap <A-v> <C-r>+
 
 " === Make Enter work ffs ===
 nnoremap <CR> :normal o<CR>
@@ -86,10 +95,10 @@ endfunction
 tnoremap <C-n> <C-\><C-n>:call ToggleFullscreen()<CR>i
 
 " Jump to and from terminal
-nnoremap <C-CR> <C-w><C-p>
-vnoremap <C-CR> <C-w><C-p>
-inoremap <C-CR> <Esc><C-w><C-p>
-tnoremap <C-CR> <C-\><C-n><C-w><C-p>
+"nnoremap <C-CR> <C-w><C-p>
+"vnoremap <C-CR> <C-w><C-p>
+"inoremap <C-CR> <Esc><C-w><C-p>
+"tnoremap <C-CR> <C-\><C-n><C-w><C-p>
 tnoremap <C-p> <C-\><C-n>:FZF<CR>
 
 let g:terminal_color_foreground = "#ecf0c1"
@@ -111,33 +120,22 @@ let g:terminal_color_13 = "#ce6f8f"
 let g:terminal_color_14 = "#7a5ccc"
 let g:terminal_color_15 = "#ecf0c1"
 
-" === Nim LSP ===
-let s:nimlspexecutable = "nimlsp"
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('/tmp/vim-lsp.log')
-let g:asyncomplete_log_file = expand('/tmp/asyncomplete.log')
-let g:asyncomplete_auto_popup = 0
-
-if executable(s:nimlspexecutable)
-  au User lsp_setup call lsp#register_server({
-  \ 'name': 'nimlsp',
-  \ 'cmd': {server_info->[s:nimlspexecutable]},
-  \ 'whitelist': ['nim'],
-  \ })
-endif
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <TAB>
-  \ pumvisible() ? "\<C-n>" :
-  \ <SID>check_back_space() ? "\<TAB>" :
-  \ asyncomplete#force_refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" === COC ===
+" Used to expand decorations in worksheets
+nmap <Leader>ws <Plug>(coc-metals-expand-decoration)
+" Toggle panel with Tree Views
+nnoremap <silent> <space>t :<C-u>CocCommand metals.tvp<CR>
+" Toggle Tree View 'metalsPackages'
+nnoremap <silent> <space>tp :<C-u>CocCommand metals.tvp metalsPackages<CR>
+" Toggle Tree View 'metalsCompile'
+nnoremap <silent> <space>tc :<C-u>CocCommand metals.tvp metalsCompile<CR>
+" Toggle Tree View 'metalsBuild'
+nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
+" Reveal current current class (trait or object) in Tree View 'metalsPackages'
+nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 
 " === Auto commands ===
+autocmd BufRead,BufNewFile *.sbt,*.sc set filetype=scala
 autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
 autocmd FileType fzf tnoremap <buffer> <Esc> <Esc>
 autocmd TermOpen * startinsert
