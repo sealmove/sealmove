@@ -1,6 +1,7 @@
 Hi there, I am a Software Engineer from Greece. Below are some notable repos I have worked on.
 
-**Personal:** :yellow_circle: [binarylang](https://github.com/sealmove/binarylang)  
+**Personal:** :yellow_circle: [binarylang](https://github.com/sealmove/binarylang)
+:large_blue_circle: [alexithymia](https://github.com/sealmove/alexithymia)  
 **Organizational:** :red_circle: [kaitai_struct](https://github.com/kaitai-io/kaitai_struct)  
 **Journals:** :orange_circle: [android-journey](https://github.com/sealmove/android-journey)
 :black_circle: [ctf-journey](https://github.com/sealmove/ctf-journey)
