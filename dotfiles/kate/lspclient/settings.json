@@ -4,6 +4,11 @@
             "command": [".nimble/bin/nimlsp"],
             "url": "https://github.com/PMunch/nimlsp",
             "highlightingModeRegex": "^Nim$"
+        },
+        "python": {
+            "command": ["python3", "-m", "pyls", "--check-parent-process"],
+            "url": "https://github.com/palantir/python-language-server",
+            "highlightingModeRegex": "^Python$"
         }
     }
 }
