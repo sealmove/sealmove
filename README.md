@@ -1,9 +1,9 @@
 Hi there, I am a Software Engineer from Greece. Below are some notable repos I have worked on.
 
+**Contributions:** :red_circle: [kaitai_struct](https://github.com/kaitai-io/kaitai_struct)  
 **Personal:** :yellow_circle: [binarylang](https://github.com/sealmove/binarylang)
 :large_blue_circle: [alexithymia](https://github.com/sealmove/alexithymia)
 :black_circle: [orcas](https://github.com/sealmove/orcas)  
-**Organizational:** :red_circle: [kaitai_struct](https://github.com/kaitai-io/kaitai_struct)  
 **Journals:** :black_circle: [ctf-journey](https://github.com/sealmove/ctf-journey)
 :black_circle: [posix-journey](https://github.com/sealmove/posix-journey)  
 **Academic:** :green_circle: [minic2c](https://github.com/sealmove/minic2c)
