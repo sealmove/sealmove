@@ -1,6 +1,7 @@
 Hi there, I am a Software Engineer from Greece. Below are some notable repos I have worked on.
 
-**Contributions:** :red_circle: [kaitai_struct](https://github.com/kaitai-io/kaitai_struct)  
+**Contributions:** :red_circle: [kaitai_struct](https://github.com/kaitai-io/kaitai_struct)
+:brown_circle: [spin-nim-sdk](https://github.com/fermyon/spin-nim-sdk)  
 **Personal:** :yellow_circle: [binarylang](https://github.com/sealmove/binarylang)  
 **Journals:** :white_circle: [ctf-journey](https://github.com/sealmove/ctf-journey)
 :white_circle: [posix-journey](https://github.com/sealmove/posix-journey)  
