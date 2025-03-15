@@ -1,4 +1,4 @@
-Hi there, I am a Software Engineer from Greece. Below are some notable repos I have worked on.
+Hi there, I am a Software Engineer currently living in Spain. Here you will find projects I have hacked on outside my professional career.
 
 **Contributions:** :red_circle: [kaitai_struct](https://github.com/kaitai-io/kaitai_struct)
 :brown_circle: [spin-nim-sdk](https://github.com/fermyon/spin-nim-sdk)  
